@@ -74,7 +74,8 @@ export default defineConfig({
 			},
 			customCss: ['./src/styles/theme.css'],
 			head: [
-				// Fonts matching the current site: Inter (body) + Space Grotesk (headings).
+				// Theme fonts: Barlow (body) + Barlow Condensed (headings). Keep in sync with the
+				// font link in src/pages/index.astro, contact.astro and ask.astro.
 				{
 					tag: 'link',
 					attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -91,7 +92,7 @@ export default defineConfig({
 					tag: 'link',
 					attrs: {
 						rel: 'stylesheet',
-						href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap',
+						href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap',
 					},
 				},
 				// Old-Docsify-hash compatibility shim. Old deep links look like

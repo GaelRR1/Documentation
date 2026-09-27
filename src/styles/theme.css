@@ -1,204 +1,239 @@
 /* ==========================================================================
-   "Heat" theme for Starlight — the Fab Lab's dark grey / chrome / orange
-   scheme, with Aggie maroon used only as a ground or the hot end of a
-   gradient (it measures ~1.1:1 on the dark grey, so it can never be text
-   or a line in dark mode). Overrides Starlight's CSS custom properties for
-   both modes, then adds the few "Heat" accents: a brushed-metal header
-   with an orange stripe, an orange glow on primary buttons and the current
-   sidebar page, and maroon-to-orange heading rules.
+   "Signs on Paper" theme for Starlight — the Fab Lab docs styled after the
+   ANSI Z535 / ISO 3864 safety signs students already read on the shop
+   floor, set on warm paper and ink.
 
-   Base palette:  orange #f9882c · chrome #cccccc · grey #282828 · maroon #500000
-   Derived shades were chosen for WCAG contrast (links ≥ 4.5:1 on the page
-   ground in both modes). The standalone pages (landing, Contact, Ask) read
-   the same palette from src/styles/site.css — keep the two in sync.
+   - A black header plate with a safety-orange band, in both modes.
+   - Callouts are signs: a signal-word band over a plain panel. The band
+     colour carries the callout's meaning from DOCS_FORMAT.md:
+       :::danger   red band, white lettering  (hard gate, e.g. certification)
+       :::caution  orange band, black lettering, tinted panel (emergency procedure)
+       [!WARNING]  black band, orange lettering (ordinary hazard)
+       [!NOTE]     blue band, white lettering
+   - The current page (nav and sidebar) is a solid orange tag.
+   - Barlow for text (drawn from highway signage), Barlow Condensed for
+     headings; fonts load from Google Fonts in astro.config.mjs.
+   - Square corners, no gradients, no glow.
+
+   Sign colours (safety orange #f9882c, red #c8102e, blue #0057b8, green
+   #00804a, plate #0d0d0d) are fixed in both modes, like physical signs.
+   Everything else is tokenised per mode; text pairs were checked for
+   WCAG contrast (links >= 4.5:1 on the page ground in both modes). The
+   standalone pages (landing, Contact, Ask) read the same palette from
+   src/styles/site.css — keep the two in sync.
    ========================================================================== */
 
-/* ---- Base colors + Heat accents (shared by both modes) ---- */
 :root {
-	--tfl-orange: #f9882c;
-	--tfl-orange-soft: #fba661;
-	--tfl-chrome: #cccccc;
-	--tfl-grey: #282828;
-	--tfl-maroon: #500000;
-
-	/* 3px stripe along the top of the header. */
-	--tfl-stripe: var(--tfl-orange);
-	/* Heading rule: maroon into orange, fading out to the right. */
-	--tfl-heading-rule: linear-gradient(90deg, var(--tfl-maroon), var(--tfl-orange) 55%, rgba(249, 136, 44, 0));
+	--sl-font: 'Barlow', system-ui, sans-serif;
+	--tfl-display: 'Barlow Condensed', 'Barlow', sans-serif;
+	--tfl-signal-orange: #f9882c;
+	--tfl-signal-red: #c8102e;
+	--tfl-signal-blue: #0057b8;
+	--tfl-signal-green: #00804a;
+	--tfl-plate: #0d0d0d;
+	--sl-text-base: 1.0625rem;
 }
 
-/* ---- Dark mode (default) ---- */
+/* ---- Dark mode ---- */
 :root {
-	/* Grayscale / surfaces */
-	--sl-color-white: #ebebeb; /* headings, strong text */
-	--sl-color-gray-1: #cccccc; /* body text (chrome) */
-	--sl-color-gray-2: #cccccc;
-	--sl-color-gray-3: #8c8c8c; /* muted */
-	--sl-color-gray-4: #5f5f5f;
-	--sl-color-gray-5: #4d4d4d; /* borders */
-	--sl-color-gray-6: #373737; /* surfaces */
-	--sl-color-black: #232323; /* page background */
+	--tfl-ink: #f2f2f2;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e6e6e6;
+	--sl-color-gray-2: #cfcfcf;
+	--sl-color-gray-3: #a3a3a3;
+	--sl-color-gray-4: #6b6b6b;
+	--sl-color-gray-5: #3d3d3d;
+	--sl-color-gray-6: #1f1f1f;
+	--sl-color-black: #151515;
 
-	/* Accents */
-	--sl-color-accent-low: #523925;
-	--sl-color-accent: #f9882c; /* orange */
-	--sl-color-accent-high: #fba661;
-	--sl-color-text-accent: #f9882c; /* links, active nav — 6.4:1 on the page */
+	--sl-color-accent-low: #3a2412;
+	--sl-color-accent: #f9882c;
+	--sl-color-accent-high: #fbb57a;
+	--sl-color-text-accent: #f9882c;
 
-	/* Backgrounds */
-	--sl-color-bg: #232323;
-	--sl-color-bg-nav: #191919;
-	--sl-color-bg-sidebar: #191919;
-	--sl-color-bg-inline-code: #444444;
+	--sl-color-bg: #151515;
+	--sl-color-bg-nav: #0d0d0d;
+	--sl-color-bg-sidebar: #151515;
+	--sl-color-bg-inline-code: #2a2a2a;
+	--sl-color-hairline-light: #2a2a2a;
+	--sl-color-hairline: #3d3d3d;
+	--sl-color-hairline-shade: #f9882c;
+	--sl-color-text: #e6e6e6;
+	--sl-color-text-invert: #0d0d0d;
 
-	/* Hairlines / borders */
-	--sl-color-hairline-light: #4d4d4d;
-	--sl-color-hairline: #4d4d4d;
-	/* Header bottom divider — must contrast with --sl-color-bg-nav or it
-	   vanishes (it did once; see git history). */
-	--sl-color-hairline-shade: #4f4f4f;
-
-	/* Text */
-	--sl-color-text: #cccccc;
-	--sl-color-text-invert: #232323;
-
-	/* Semantic colors (asides / GitHub-style alerts / badges).
-	   red = danger: maroon ground, rail warmed toward orange so it clears 3:1.
-	   orange & yellow = caution / warning: the orange.
-	   green = tip. blue = note. purple = "important" (GitHub alerts). */
-	--sl-color-red: #b24f1a;
-	--sl-color-red-high: #c3764c;
-	--sl-color-red-low: #371313;
+	--sl-color-red: #ff5c6c;
+	--sl-color-red-high: #ff8f9a;
+	--sl-color-red-low: #1f1f1f;
 	--sl-color-orange: #f9882c;
-	--sl-color-orange-high: #fba661;
-	--sl-color-orange-low: #413124;
+	--sl-color-orange-high: #fbb57a;
+	--sl-color-orange-low: #2b1d10;
 	--sl-color-yellow: #f9882c;
-	--sl-color-yellow-high: #fba661;
-	--sl-color-yellow-low: #413124;
-	--sl-color-green: #8fbf7a;
-	--sl-color-green-high: #b3d8a3;
-	--sl-color-green-low: #32392f;
-	--sl-color-blue: #8fb4c7;
-	--sl-color-blue-high: #b8d0dc;
-	--sl-color-blue-low: #2b3438;
-	--sl-color-purple: #c49ab0;
-	--sl-color-purple-high: #dcbfcd;
-	--sl-color-purple-low: #35292f;
-
-	/* Heat accents */
-	--tfl-brush-a: #1c1c1c;
-	--tfl-brush-b: #2e2e2e;
-	--tfl-glow: 0 0 0 1px rgba(249, 136, 44, 0.55), 0 0 18px rgba(249, 136, 44, 0.38);
-	--tfl-active-bg: #382d24;
-	--tfl-active-fg: #f9882c;
-	--tfl-active-glow: rgba(249, 136, 44, 0.25);
-
-	/* Fonts — match the current site */
-	--sl-font: 'Inter', system-ui, sans-serif;
+	--sl-color-yellow-high: #fbb57a;
+	--sl-color-yellow-low: #1f1f1f;
+	--sl-color-green: #4cc38a;
+	--sl-color-green-high: #8fdcb6;
+	--sl-color-green-low: #1f1f1f;
+	--sl-color-blue: #5ea2f0;
+	--sl-color-blue-high: #9cc6f6;
+	--sl-color-blue-low: #1f1f1f;
+	--sl-color-purple: #b69cf0;
+	--sl-color-purple-high: #d3c4f6;
+	--sl-color-purple-low: #1f1f1f;
 }
 
 /* ---- Light mode ---- */
 :root[data-theme='light'] {
-	--sl-color-white: #1c1c1c; /* headings */
-	--sl-color-gray-1: #282828; /* body text */
-	--sl-color-gray-2: #282828;
-	--sl-color-gray-3: #6f6f6f; /* muted */
-	--sl-color-gray-4: #a6a6a6;
-	--sl-color-gray-5: #b4b4b4; /* borders */
-	--sl-color-gray-6: #e6e6e6; /* surfaces */
-	--sl-color-gray-7: #ededed;
-	--sl-color-black: #f5f5f5; /* page background (chrome-white) */
+	--tfl-ink: #1a1c1e;
+	--sl-color-white: #1a1c1e;
+	--sl-color-gray-1: #26292c;
+	--sl-color-gray-2: #2e2e2e;
+	--sl-color-gray-3: #555555;
+	--sl-color-gray-4: #8a8a8a;
+	--sl-color-gray-5: #cfcdc4;
+	--sl-color-gray-6: #eeede6;
+	--sl-color-gray-7: #f4f3ee;
+	--sl-color-black: #fafaf7;
 
-	--sl-color-accent-low: #f6ddc9;
-	--sl-color-accent: #f9882c; /* orange — fills and underlines only */
-	--sl-color-accent-high: #874a18;
-	/* Raw orange is 2.2:1 on the light page, so text roles use it darkened
-	   toward black until it clears 4.5:1. */
-	--sl-color-text-accent: #a95c1e;
+	--sl-color-accent-low: #fde7d3;
+	--sl-color-accent: #f9882c;
+	--sl-color-accent-high: #8a3f00;
+	--sl-color-text-accent: #a84a00; /* 5.4:1 on paper */
 
-	--sl-color-bg: #f5f5f5;
-	--sl-color-bg-nav: #dbdbdb; /* chrome */
-	--sl-color-bg-sidebar: #e9e9e9;
-	--sl-color-bg-inline-code: #e0e0e0;
+	--sl-color-bg: #fafaf7;
+	/* Light on purpose: Starlight reuses bg-nav for the phone "On this page"
+	   bar and the theme dropdown. The header paints its own black plate below. */
+	--sl-color-bg-nav: #f2f1ea;
+	--sl-color-bg-sidebar: #f2f1ea;
+	--sl-color-bg-inline-code: #efeee7;
+	--sl-color-hairline-light: #dcdad1;
+	--sl-color-hairline: #cfcdc4;
+	--sl-color-hairline-shade: #f9882c;
+	--sl-color-text: #26292c;
+	--sl-color-text-invert: #fafaf7;
 
-	--sl-color-hairline-light: #b4b4b4;
-	--sl-color-hairline: #b4b4b4;
-	--sl-color-hairline-shade: #adadad;
-
-	--sl-color-text: #282828;
-	--sl-color-text-invert: #f5f5f5;
-
-	--sl-color-red: #500000; /* danger = maroon (9.8:1 on the page) */
-	--sl-color-red-high: #500000;
-	--sl-color-red-low: #e8e1e1;
-	--sl-color-orange: #a95c1e;
-	--sl-color-orange-high: #874a18;
-	--sl-color-orange-low: #f5eae1;
-	--sl-color-yellow: #a95c1e;
-	--sl-color-yellow-high: #874a18;
-	--sl-color-yellow-low: #f5eae1;
-	--sl-color-green: #3e7a3c;
-	--sl-color-green-high: #2e5c2d;
-	--sl-color-green-low: #e3e9e3;
-	--sl-color-blue: #2f6a80;
-	--sl-color-blue-high: #235061;
-	--sl-color-blue-low: #e0e7ea;
-	--sl-color-purple: #7a4a66;
-	--sl-color-purple-high: #5c3750;
-	--sl-color-purple-low: #ebe3e8;
-
-	--tfl-brush-a: #d4d4d4;
-	--tfl-brush-b: #e3e3e3;
-	--tfl-glow: 0 0 0 1px rgba(249, 136, 44, 0.55), 0 0 18px rgba(249, 136, 44, 0.28);
-	--tfl-active-bg: #f5ece5;
-	--tfl-active-fg: #a95c1e;
-	--tfl-active-glow: rgba(249, 136, 44, 0.18);
+	--sl-color-red: #c8102e;
+	--sl-color-red-high: #a00d25;
+	--sl-color-red-low: #fafaf7;
+	--sl-color-orange: #a84a00;
+	--sl-color-orange-high: #8a3f00;
+	--sl-color-orange-low: #fcefe4;
+	--sl-color-yellow: #a84a00;
+	--sl-color-yellow-high: #8a3f00;
+	--sl-color-yellow-low: #fafaf7;
+	--sl-color-green: #00804a;
+	--sl-color-green-high: #006239;
+	--sl-color-green-low: #fafaf7;
+	--sl-color-blue: #0057b8;
+	--sl-color-blue-high: #004592;
+	--sl-color-blue-low: #fafaf7;
+	--sl-color-purple: #5b3cc4;
+	--sl-color-purple-high: #472f9a;
+	--sl-color-purple-low: #fafaf7;
 }
 
-/* ==========================================================================
-   Heat accents
-   ========================================================================== */
+/* ---- Header: a black sign plate in both modes, orange band underneath ---- */
+:root {
+	/* Site-wide notification banner (src/routeData.ts): an orange sign strip. */
+	--sl-color-banner-bg: var(--tfl-signal-orange);
+	--sl-color-banner-text: #0d0d0d;
+}
 
-/* Brushed-metal header: fine 1px vertical striping under a faint top-to-
-   bottom sheen, plus the orange stripe along the very top. Starlight's
-   header is position: fixed, so the ::before sits inside it. */
 :root header.header {
-	background-image:
-		repeating-linear-gradient(90deg, var(--tfl-brush-a) 0 1px, var(--tfl-brush-b) 1px 3px),
-		linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.08));
-	background-blend-mode: normal, overlay;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e6e6e6;
+	--sl-color-gray-2: #cfcfcf;
+	--sl-color-gray-3: #a3a3a3;
+	--sl-color-gray-5: #3d3d3d;
+	--sl-color-gray-6: #1f1f1f;
+	--sl-color-black: #0d0d0d;
+	--sl-color-text: #e6e6e6;
+	--sl-color-text-accent: #f9882c;
+	--sl-color-hairline-light: #3d3d3d;
+	background: var(--tfl-plate);
+	border-bottom: 5px solid var(--tfl-signal-orange);
 }
-:root header.header::before {
-	content: '';
-	position: absolute;
-	inset: 0 0 auto 0;
-	height: 3px;
-	background: var(--tfl-stripe);
-	pointer-events: none;
+:root .site-title {
+	font-family: var(--tfl-display);
+	font-weight: 800;
+	font-size: 1.6rem;
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	color: #ffffff;
 }
+:root .site-nav a {
+	font-family: var(--tfl-display);
+	font-size: 1.05rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #e6e6e6;
+}
+:root .site-nav a[aria-current='page'] {
+	color: #0d0d0d;
+	background: var(--tfl-signal-orange);
+	border-bottom-color: transparent;
+	padding-inline: 0.45rem;
+}
+:root site-search button { border-radius: 0; }
 
-/* Page title and section headings: a thin maroon-to-orange rule. */
+/* ---- Headings ---- */
+h1, h2, h3, h4, h5, h6,
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--tfl-display);
+	font-weight: 700;
+	letter-spacing: 0.005em;
+}
 :root .content-panel h1#_top {
-	padding-bottom: 0.3em;
-	border-bottom: 2px solid transparent;
-	border-image: var(--tfl-heading-rule) 1;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: clamp(2.25rem, 5vw, 3.1rem);
+	line-height: 0.98;
+}
+:root .content-panel h1#_top::after {
+	content: '';
+	display: block;
+	width: 4.5rem;
+	height: 6px;
+	margin-top: 0.8rem;
+	background: var(--tfl-signal-orange);
 }
 .sl-markdown-content h2:not(:where(.not-content *)) {
-	padding-bottom: 0.2em;
-	border-bottom: 1px solid transparent;
-	border-image: var(--tfl-heading-rule) 1;
+	font-size: 1.95rem;
+	line-height: 1.1;
+}
+/* The heavy rule goes on Starlight's heading wrapper, which spans the column
+   (the h2 inside it shrinks to its text). */
+.sl-markdown-content .sl-heading-wrapper.level-h2:not(:where(.not-content *)) {
+	padding-top: 0.5rem;
+	border-top: 3px solid var(--tfl-ink);
+}
+.sl-markdown-content h3:not(:where(.not-content *)) {
+	font-size: 1.45rem;
 }
 
-/* ---- Headings use Space Grotesk, like the current site ---- */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.site-title {
-	font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+/* ---- Sidebar: condensed caps groups, current page = orange tag ---- */
+:root #starlight__sidebar .top-level > li > details > summary .group-label .large,
+:root #starlight__sidebar .top-level > li > a {
+	font-weight: 600;
+	font-size: 1rem;
 }
+:root #starlight__sidebar [aria-current='page'],
+:root #starlight__sidebar [aria-current='page']:hover,
+:root #starlight__sidebar [aria-current='page']:focus {
+	background: var(--tfl-signal-orange);
+	color: #0d0d0d;
+	font-weight: 700;
+	border-radius: 0;
+	box-shadow: none;
+}
+:root .right-sidebar h2 {
+	font-family: var(--tfl-display);
+	text-transform: uppercase;
+	font-size: 1.05rem;
+}
+:root .pagination-links a { border-radius: 0; border: 2px solid var(--sl-color-hairline); box-shadow: none; }
+:root .pagination-links a:hover { border-color: var(--tfl-ink); }
+:root .pagination-links .link-title { font-family: var(--tfl-display); font-weight: 700; text-transform: uppercase; font-size: 1.25rem; }
 
 /* ==========================================================================
    GitHub-style blockquote alerts (remark-github-blockquote-alert output:
@@ -248,6 +283,66 @@ h6,
 .markdown-alert.markdown-alert-caution {
 	--gb-alert-color: var(--sl-color-red);
 }
+
+/* ---- Callouts as safety signs: a signal-word band over a plain panel ----
+   Band colors follow ANSI Z535: DANGER red / white text, the emergency
+   procedures on safety orange / black text, WARNING on a black band with
+   orange text, NOTICE blue / white. The band carries the title. */
+:root .starlight-aside,
+.markdown-alert {
+	padding: 0;
+	border: 3px solid var(--band-edge);
+	border-radius: 0;
+	background: var(--panel);
+	color: var(--sl-color-text);
+}
+:root .starlight-aside__title,
+.markdown-alert .markdown-alert-title {
+	margin: 0;
+	padding: 0.45rem 1rem;
+	background: var(--band);
+	color: var(--band-fg);
+	font-family: var(--tfl-display);
+	font-weight: 700;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
+}
+:root .starlight-aside__content { padding: 0.75rem 1rem 1rem; }
+:root .starlight-aside__title + .starlight-aside__content { margin-top: 0; }
+.markdown-alert > :not(.markdown-alert-title) { padding-inline: 1rem; }
+.markdown-alert > .markdown-alert-title + * { margin-top: 0.75rem; }
+.markdown-alert > :last-child { padding-bottom: 1rem; }
+:root .starlight-aside__content a { color: inherit; }
+
+:root .starlight-aside--danger { --band: var(--tfl-signal-red); --band-fg: #fff; --band-edge: var(--tfl-signal-red); --panel: var(--sl-color-bg); }
+:root .starlight-aside--caution { --band: var(--tfl-signal-orange); --band-fg: #0d0d0d; --band-edge: var(--tfl-signal-orange); --panel: var(--sl-color-orange-low); }
+:root .starlight-aside--note { --band: var(--tfl-signal-blue); --band-fg: #fff; --band-edge: var(--tfl-signal-blue); --panel: var(--sl-color-bg); }
+:root .starlight-aside--tip { --band: var(--tfl-signal-green); --band-fg: #fff; --band-edge: var(--tfl-signal-green); --panel: var(--sl-color-bg); }
+.markdown-alert-warning, .markdown-alert-caution { --band: #0d0d0d; --band-fg: var(--tfl-signal-orange); --band-edge: #0d0d0d; --panel: var(--sl-color-bg); }
+.markdown-alert-note { --band: var(--tfl-signal-blue); --band-fg: #fff; --band-edge: var(--tfl-signal-blue); --panel: var(--sl-color-bg); }
+.markdown-alert-tip { --band: var(--tfl-signal-green); --band-fg: #fff; --band-edge: var(--tfl-signal-green); --panel: var(--sl-color-bg); }
+.markdown-alert-important { --band: #5b3cc4; --band-fg: #fff; --band-edge: #5b3cc4; --panel: var(--sl-color-bg); }
+:root:not([data-theme='light']) .markdown-alert-warning,
+:root:not([data-theme='light']) .markdown-alert-caution { --band-edge: #5a5a5a; }
+
+/* Download button: an orange plate. */
+.sl-markdown-content a.tfl-download-button {
+	display: inline-block;
+	padding: 0.5rem 1.1rem;
+	margin: 0.25rem 0.5rem 0.25rem 0;
+	background: var(--tfl-signal-orange);
+	color: #0d0d0d;
+	border: 2px solid #0d0d0d;
+	border-radius: 0;
+	font-family: var(--tfl-display);
+	font-weight: 800;
+	font-size: 1.15rem;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.sl-markdown-content a.tfl-download-button:hover { background: #fbb57a; color: #0d0d0d; }
 
 /* ---------------------------------------------------------------------------
    Layout: pin the right "On this page" rail at a fixed width against the
@@ -311,47 +406,6 @@ h6,
 --------------------------------------------------------------------------- */
 :root #starlight__sidebar ul:not(.top-level) .group-label .large {
 	color: var(--sl-color-gray-3);
-}
-
-/* ---------------------------------------------------------------------------
-   Left sidebar: current-page highlight. Starlight's default fills the
-   active link with a solid --sl-color-text-accent background + inverted
-   text; swapped for a warm tinted surface, orange text, a 2px orange edge
-   on the left, and a soft orange glow (the "Heat" accent).
---------------------------------------------------------------------------- */
-:root #starlight__sidebar [aria-current='page'],
-:root #starlight__sidebar [aria-current='page']:hover,
-:root #starlight__sidebar [aria-current='page']:focus {
-	background-color: var(--tfl-active-bg);
-	color: var(--tfl-active-fg);
-	box-shadow:
-		inset 2px 0 0 var(--tfl-orange),
-		0 0 14px var(--tfl-active-glow);
-}
-
-/* ---------------------------------------------------------------------------
-   Download button for machine pages (e.g. the NeoDen YY1 Formatter).
-   Plain <a class="tfl-download-button" href="/files/..."> in Markdown;
-   degrades to an ordinary link if the class is ever removed.
---------------------------------------------------------------------------- */
-.sl-markdown-content a.tfl-download-button {
-	display: inline-block;
-	padding: 0.5rem 1rem;
-	/* Space between adjacent buttons (e.g. Windows/macOS pair), horizontally
-	   and vertically when they wrap on narrow screens. */
-	margin: 0.25rem 0.5rem 0.25rem 0;
-	border-radius: 0.5rem;
-	/* Raw orange with dark grey text in both modes (6:1), plus the glow. */
-	background-color: var(--tfl-orange);
-	color: var(--tfl-grey);
-	font-weight: 600;
-	text-decoration: none;
-	box-shadow: var(--tfl-glow);
-	transition: background-color 0.12s ease;
-}
-.sl-markdown-content a.tfl-download-button:hover {
-	background-color: var(--tfl-orange-soft);
-	color: var(--tfl-grey);
 }
 
 /* ---------------------------------------------------------------------------

@@ -40,7 +40,7 @@ import '../styles/site.css';
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
 		/>
 	</head>
 
@@ -191,7 +191,7 @@ import '../styles/site.css';
 	body {
 		background: var(--bg);
 		color: var(--fg);
-		font-family: 'Inter', system-ui, sans-serif;
+		font-family: var(--font-body);
 		line-height: 1.65;
 		-webkit-font-smoothing: antialiased;
 	}
@@ -224,7 +224,7 @@ import '../styles/site.css';
 		flex-wrap: wrap;
 	}
 	.topbar .brand {
-		font-family: 'Space Grotesk', sans-serif;
+		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: 1.1rem;
 		color: var(--fg);
@@ -254,7 +254,7 @@ import '../styles/site.css';
 		padding: 2.5rem 1.5rem 2.25rem;
 	}
 	.hero h1 {
-		font-family: 'Space Grotesk', sans-serif;
+		font-family: var(--font-display);
 		font-size: clamp(2rem, 5vw, 3rem);
 		margin: 0 0 0.5rem;
 		letter-spacing: -0.02em;
@@ -302,7 +302,7 @@ import '../styles/site.css';
 		padding: 2.5rem 0 4rem;
 	}
 	main h2 {
-		font-family: 'Space Grotesk', sans-serif;
+		font-family: var(--font-display);
 		font-size: 1.4rem;
 		margin: 0 0 0.75rem;
 	}
@@ -324,7 +324,7 @@ import '../styles/site.css';
 		padding: 1.1rem 1.25rem;
 	}
 	.person-name {
-		font-family: 'Space Grotesk', sans-serif;
+		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: 1.05rem;
 	}
