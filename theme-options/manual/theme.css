@@ -1,0 +1,255 @@
+/* ==========================================================================
+   OPTION C — "Field Manual"
+   The docs as a well-made printed service manual: warm paper, a serif text
+   face sized for reading, numbered sections, double rules, and Aggie maroon
+   as the house color. Source Serif 4 for text and headings; IBM Plex Sans
+   Condensed for labels, navigation and callout titles; Plex Mono for code.
+   ========================================================================== */
+:root {
+	--sl-font: 'Source Serif 4', Georgia, serif;
+	--sl-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+	--tfl-label: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;
+	--sl-text-base: 1.075rem;
+	--sl-line-height: 1.65;
+}
+
+/* ---- Dark mode: the same manual under a reading lamp ---- */
+:root {
+	--tfl-house: #e8a09a; /* maroon lifted to a readable rose: 8.3:1 */
+	--tfl-rule: #4a433b;
+	--sl-color-white: #f3ece0;
+	--sl-color-gray-1: #e2dacb;
+	--sl-color-gray-2: #cbc2b2;
+	--sl-color-gray-3: #a39a8b;
+	--sl-color-gray-4: #6e665b;
+	--sl-color-gray-5: #4a433b;
+	--sl-color-gray-6: #2a2622;
+	--sl-color-black: #1c1916;
+
+	--sl-color-accent-low: #3a2322;
+	--sl-color-accent: #c77872;
+	--sl-color-accent-high: #f0c1bc;
+	--sl-color-text-accent: #e8a09a;
+
+	--sl-color-bg: #1c1916;
+	--sl-color-bg-nav: #1c1916;
+	--sl-color-bg-sidebar: #201d19;
+	--sl-color-bg-inline-code: #2e2a25;
+	--sl-color-hairline-light: #332e28;
+	--sl-color-hairline: #4a433b;
+	--sl-color-hairline-shade: #6e665b;
+	--sl-color-text: #e2dacb;
+	--sl-color-text-invert: #1c1916;
+
+	--sl-color-red: #ff7b72;
+	--sl-color-red-high: #ffaba5;
+	--sl-color-red-low: #33191a;
+	--sl-color-orange: #f59a4e;
+	--sl-color-orange-high: #f8bd8c;
+	--sl-color-orange-low: #33241a;
+	--sl-color-yellow: #f59a4e;
+	--sl-color-yellow-high: #f8bd8c;
+	--sl-color-yellow-low: #33241a;
+	--sl-color-green: #93c48f;
+	--sl-color-green-high: #bcdcb9;
+	--sl-color-green-low: #1f271e;
+	--sl-color-blue: #8fb6d6;
+	--sl-color-blue-high: #bcd3e6;
+	--sl-color-blue-low: #1d2429;
+	--sl-color-purple: #c6a6d4;
+	--sl-color-purple-high: #ddc9e5;
+	--sl-color-purple-low: #28202b;
+}
+
+/* ---- Light mode: the printed page ---- */
+:root[data-theme='light'] {
+	--tfl-house: #500000; /* Aggie maroon, 13:1 on the paper */
+	--tfl-rule: #2a2520;
+	--sl-color-white: #1f1a16;
+	--sl-color-gray-1: #2a2520;
+	--sl-color-gray-2: #3d3731;
+	--sl-color-gray-3: #6b6258;
+	--sl-color-gray-4: #9a9186;
+	--sl-color-gray-5: #cfc6b6;
+	--sl-color-gray-6: #ebe5d8;
+	--sl-color-gray-7: #f1ece1;
+	--sl-color-black: #f7f3ea;
+
+	--sl-color-accent-low: #eedcd6;
+	--sl-color-accent: #500000;
+	--sl-color-accent-high: #3a0000;
+	--sl-color-text-accent: #7a1a1a;
+
+	--sl-color-bg: #f7f3ea;
+	--sl-color-bg-nav: #f7f3ea;
+	--sl-color-bg-sidebar: #f1ece1;
+	--sl-color-bg-inline-code: #ebe5d8;
+	--sl-color-hairline-light: #e0d8c8;
+	--sl-color-hairline: #cfc6b6;
+	--sl-color-hairline-shade: #2a2520;
+	--sl-color-text: #2a2520;
+	--sl-color-text-invert: #f7f3ea;
+
+	--sl-color-red: #b3261e;
+	--sl-color-red-high: #8c1d17;
+	--sl-color-red-low: #f6e1dc;
+	--sl-color-orange: #a4500f;
+	--sl-color-orange-high: #843f0a;
+	--sl-color-orange-low: #f7e6d3;
+	--sl-color-yellow: #a4500f;
+	--sl-color-yellow-high: #843f0a;
+	--sl-color-yellow-low: #f7f3ea;
+	--sl-color-green: #3d6b35;
+	--sl-color-green-high: #2e5228;
+	--sl-color-green-low: #e7ecdf;
+	--sl-color-blue: #2d5a7b;
+	--sl-color-blue-high: #22455e;
+	--sl-color-blue-low: #e3e8e9;
+	--sl-color-purple: #6a4a7a;
+	--sl-color-purple-high: #52385e;
+	--sl-color-purple-low: #ece4e8;
+}
+
+/* ---- Header: paper, closed off by a double rule like a manual's running head ---- */
+:root header.header {
+	background: var(--sl-color-bg-nav);
+	border-bottom: 3px double var(--tfl-rule);
+}
+:root .site-title {
+	font-family: var(--tfl-label);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+	font-size: 1rem;
+	color: var(--tfl-house);
+}
+:root .site-nav a {
+	font-family: var(--tfl-label);
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 0.82rem;
+}
+:root .site-nav a[aria-current='page'] {
+	color: var(--tfl-house);
+	border-bottom: 1px solid var(--tfl-house);
+}
+:root site-search button { border-radius: 2px; font-family: var(--tfl-label); }
+:root starlight-theme-select, :root starlight-theme-select select { font-family: var(--tfl-label); }
+
+/* ---- Headings: serif, numbered like a manual ---- */
+h1, h2, h3, h4, h5, h6,
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
+	font-family: 'Source Serif 4', Georgia, serif;
+	font-weight: 600;
+	letter-spacing: -0.005em;
+}
+:root .content-panel h1#_top {
+	font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+	font-weight: 700;
+	line-height: 1.12;
+	padding-bottom: 0.45em;
+	border-bottom: 3px double var(--tfl-rule);
+}
+.sl-markdown-content { counter-reset: tfl-sec; }
+.sl-markdown-content h2:not(:where(.not-content *)) {
+	counter-increment: tfl-sec;
+	font-size: 1.75rem;
+	padding-top: 0.6rem;
+	border-top: 1px solid var(--tfl-rule);
+}
+.sl-markdown-content h2:not(:where(.not-content *))::before {
+	content: counter(tfl-sec) '.';
+	display: inline-block;
+	min-width: 2ch;
+	margin-right: 0.45em;
+	color: var(--tfl-house);
+	font-variant-numeric: lining-nums;
+}
+.sl-markdown-content h3:not(:where(.not-content *)) {
+	font-size: 1.3rem;
+	font-style: italic;
+	font-weight: 600;
+}
+
+/* ---- Sidebar: a table of contents ---- */
+:root #starlight__sidebar .top-level > li > details > summary .group-label .large,
+:root #starlight__sidebar .top-level > li > a {
+	font-family: var(--tfl-label);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.9rem;
+}
+:root #starlight__sidebar a { font-family: var(--sl-font); }
+:root #starlight__sidebar [aria-current='page'],
+:root #starlight__sidebar [aria-current='page']:hover,
+:root #starlight__sidebar [aria-current='page']:focus {
+	background: transparent;
+	color: var(--tfl-house);
+	font-weight: 700;
+	border-radius: 0;
+	box-shadow: inset 3px 0 0 var(--tfl-house);
+}
+:root .right-sidebar h2 {
+	font-family: var(--tfl-label);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+:root .pagination-links a { border-radius: 0; box-shadow: none; border: 1px solid var(--sl-color-hairline); }
+:root .pagination-links a:hover { border-color: var(--tfl-rule); }
+:root .sl-markdown-content :is(img, pre, table) { border-radius: 0; }
+
+/* ---- Callouts: ruled boxes with a condensed-caps title, as a printed manual
+   sets its WARNING / CAUTION blocks ----
+   danger  : red, double rule top and bottom, tinted ground
+   caution : orange, heavy rail + tinted ground (emergency procedure)
+   WARNING : orange rail on the page ground
+   NOTE    : blue rail */
+:root .starlight-aside {
+	border-radius: 0;
+	border-inline-start-width: 5px;
+	color: var(--sl-color-text);
+}
+:root .starlight-aside__title,
+.markdown-alert .markdown-alert-title {
+	font-family: var(--tfl-label);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 0.98rem;
+}
+:root .starlight-aside--danger {
+	border: 0;
+	border-top: 4px double var(--sl-color-red);
+	border-bottom: 4px double var(--sl-color-red);
+	background: var(--sl-color-red-low);
+}
+:root .starlight-aside--caution {
+	border-inline-start: 8px solid var(--sl-color-orange);
+	background: var(--sl-color-orange-low);
+}
+.markdown-alert {
+	border-radius: 0;
+	background: transparent;
+	border-inline-start-width: 5px;
+	padding-block: 0.4rem;
+}
+
+/* Download button: maroon plate. */
+.sl-markdown-content a.tfl-download-button {
+	display: inline-block;
+	padding: 0.5rem 1.1rem;
+	margin: 0.25rem 0.5rem 0.25rem 0;
+	border-radius: 2px;
+	background: var(--sl-color-accent);
+	color: var(--sl-color-text-invert);
+	font-family: var(--tfl-label);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	text-decoration: none;
+}
+.sl-markdown-content a.tfl-download-button:hover { background: var(--sl-color-accent-high); color: var(--sl-color-text-invert); }

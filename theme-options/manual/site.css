@@ -1,0 +1,86 @@
+/* ==========================================================================
+   OPTION C — "Field Manual" — standalone pages. Mirrors theme.css.
+   ========================================================================== */
+:root {
+	--font-body: 'Source Serif 4', Georgia, serif;
+	--font-display: 'Source Serif 4', Georgia, serif;
+	--font-label: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;
+	--discord-blurple: #5865f2;
+	--discord-blurple-hover: #4752c4;
+}
+:root[data-theme='dark'] {
+	--bg: #1c1916; --bg-card: #25211d; --fg: #e2dacb; --fg-strong: #f3ece0; --fg-muted: #a39a8b;
+	--rule: #6e665b; --border: #4a433b; --house: #e8a09a; --accent: #e8a09a; --accent-2: #f0c1bc;
+	--cta-bg: #e8a09a; --cta-fg: #1c1916;
+}
+:root[data-theme='light'] {
+	--bg: #f7f3ea; --bg-card: #f1ece1; --fg: #2a2520; --fg-strong: #1f1a16; --fg-muted: #6b6258;
+	--rule: #2a2520; --border: #cfc6b6; --house: #500000; --accent: #7a1a1a; --accent-2: #500000;
+	--cta-bg: #500000; --cta-fg: #f7f3ea;
+}
+html body { font-size: 1.075rem; }
+
+body .topbar { background: var(--bg); border-bottom: 3px double var(--rule); }
+body .topbar .brand {
+	font-family: var(--font-label); font-weight: 600; text-transform: uppercase;
+	letter-spacing: 0.16em; font-size: 1rem; color: var(--house);
+}
+body .topbar .links a {
+	font-family: var(--font-label); font-weight: 500; text-transform: uppercase;
+	letter-spacing: 0.1em; font-size: 0.85rem; color: var(--fg);
+}
+body .topbar .links a[aria-current='page'], body .topbar .links a:hover { color: var(--house); }
+
+/* Hero: a title page. Centered, as a printed title page is. */
+body .hero {
+	background: var(--bg); color: var(--fg); border-bottom: 0;
+	padding: 5rem 1.5rem 3rem;
+}
+body .hero .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem 2.5rem; border-bottom: 3px double var(--rule); }
+body .hero .wrap::before {
+	content: 'Texas A&M University'; display: block; margin-bottom: 1.25rem;
+	font-family: var(--font-label); font-weight: 600; text-transform: uppercase;
+	letter-spacing: 0.24em; font-size: 0.85rem; color: var(--house);
+}
+body .hero h1 {
+	font-family: var(--font-display); font-weight: 700; color: var(--fg-strong);
+	font-size: clamp(3rem, 8vw, 5rem); letter-spacing: -0.02em; line-height: 1;
+}
+body .hero .tagline { color: var(--fg); font-style: italic; font-size: 1.3rem; max-width: 32rem; }
+body .hero-ctas { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+body .cta, body .discord-cta, body .copy-btn {
+	border-radius: 2px; box-shadow: none; transform: none !important;
+	font-family: var(--font-label); font-weight: 600; text-transform: uppercase;
+	letter-spacing: 0.08em; font-size: 0.9rem; padding: 0.75rem 1.4rem;
+}
+body .cta { background: var(--cta-bg); color: var(--cta-fg); border: 1px solid var(--cta-bg); }
+body .cta:hover { background: var(--accent-2); color: var(--cta-fg); }
+body .cta-secondary { background: transparent; color: var(--fg-strong); border: 1px solid var(--rule); }
+body .cta-secondary:hover { background: transparent; color: var(--house); border-color: var(--house); }
+body .discord-cta:hover { box-shadow: none; }
+body .copy-btn { background: var(--cta-bg); color: var(--cta-fg); }
+
+body main { counter-reset: sec; }
+body main h2 {
+	counter-increment: sec;
+	font-family: var(--font-display); font-weight: 600; font-size: 1.75rem; color: var(--fg-strong);
+	padding-top: 0.6rem; border: 0; border-top: 1px solid var(--rule);
+}
+body main h2::before { content: counter(sec) '.'; color: var(--house); margin-right: 0.5em; }
+
+body .quick-facts { gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+body .fact, body .person-card, body .step, body .prompt-box, body .disclaimer {
+	border-radius: 0; background: transparent; border: 0; box-shadow: none;
+}
+body .fact { padding: 1rem 0; }
+body .fact + .fact { padding-left: 1.5rem; border-left: 1px solid var(--border); }
+body .fact .label, body .person-role, body .step-num {
+	font-family: var(--font-label); font-weight: 600; letter-spacing: 0.14em; color: var(--house);
+}
+body .fact .value { font-weight: 600; color: var(--fg-strong); }
+body .person-card { border-top: 1px solid var(--rule); padding-top: 1rem; }
+body .prompt-box, body .disclaimer { border: 1px solid var(--border); }
+body footer { border-top: 3px double var(--rule); font-family: var(--font-label); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; }
+@media (max-width: 600px) {
+	body .fact + .fact { padding-left: 0; border-left: 0; border-top: 1px solid var(--border); }
+}

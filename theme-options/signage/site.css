@@ -1,0 +1,90 @@
+/* ==========================================================================
+   OPTION B — "Shop Signage" — standalone pages. Mirrors theme.css.
+   ========================================================================== */
+:root {
+	--font-body: 'Barlow', system-ui, sans-serif;
+	--font-display: 'Barlow Condensed', 'Barlow', sans-serif;
+	--orange: #f9882c;
+	--plate: #0d0d0d;
+	--discord-blurple: #5865f2;
+	--discord-blurple-hover: #4752c4;
+}
+:root[data-theme='dark'] {
+	--bg: #151515; --bg-card: #1f1f1f; --fg: #e6e6e6; --fg-strong: #fff; --fg-muted: #a3a3a3;
+	--ink: #f2f2f2; --border: #3d3d3d; --accent: #f9882c; --accent-2: #fbb57a;
+}
+:root[data-theme='light'] {
+	--bg: #ffffff; --bg-card: #f5f5f5; --fg: #1a1a1a; --fg-strong: #0d0d0d; --fg-muted: #555;
+	--ink: #0d0d0d; --border: #c9c9c9; --accent: #a84a00; --accent-2: #8a3f00;
+}
+html body { font-size: 1.0625rem; }
+
+body .topbar { background: var(--plate); border-bottom: 5px solid var(--orange); }
+body .topbar .brand {
+	font-family: var(--font-display); font-weight: 800; font-size: 1.6rem;
+	text-transform: uppercase; color: #fff;
+}
+body .topbar .links a {
+	font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+	text-transform: uppercase; letter-spacing: 0.04em; color: #e6e6e6;
+}
+body .topbar .links a:hover { color: var(--orange); }
+body .topbar .links a[aria-current='page'] { color: #0d0d0d; background: var(--orange); padding-inline: 0.4rem; }
+
+body .hero {
+	text-align: left;
+	background: var(--plate);
+	color: #fff;
+	border-bottom: 0;
+	padding: 4rem 0 3.5rem;
+}
+body .hero .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+body .hero h1 {
+	font-family: var(--font-display);
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: clamp(3.5rem, 11vw, 7rem);
+	line-height: 0.9;
+	letter-spacing: -0.005em;
+	color: #fff;
+	margin: 0 0 1.25rem;
+}
+body .hero h1::after {
+	content: ''; display: block; width: 6rem; height: 8px; margin-top: 1.1rem; background: var(--orange);
+}
+body .hero .tagline { color: #d6d6d6; margin: 0 0 2rem; max-width: 34rem; font-size: 1.25rem; }
+body .hero-ctas { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: stretch; gap: 0.75rem; }
+body .cta, body .discord-cta, body .copy-btn {
+	border-radius: 0; box-shadow: none; transform: none !important;
+	font-family: var(--font-display); font-weight: 800; font-size: 1.2rem;
+	text-transform: uppercase; letter-spacing: 0.03em; padding: 0.6rem 1.3rem;
+}
+body .cta { background: var(--orange); color: #0d0d0d; border: 2px solid var(--orange); }
+body .cta:hover { background: #fbb57a; border-color: #fbb57a; color: #0d0d0d; }
+body .cta-secondary { background: transparent; color: #fff; border: 2px solid #fff; }
+body .cta-secondary:hover { background: #fff; color: #0d0d0d; border-color: #fff; }
+body .discord-cta { border: 2px solid var(--discord-blurple); }
+body .discord-cta:hover { box-shadow: none; }
+body .copy-btn { background: var(--orange); color: #0d0d0d; }
+
+body main h2 {
+	font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+	font-size: 2rem; line-height: 1.05; color: var(--fg-strong);
+	padding-top: 0.5rem; border: 0; border-top: 3px solid var(--ink);
+}
+
+/* Fact plates: black label band over a bordered panel. */
+body .fact, body .person-card, body .step, body .prompt-box, body .disclaimer {
+	border-radius: 0; box-shadow: none; background: var(--bg); border: 3px solid var(--ink);
+}
+body .fact { padding: 0; }
+body .fact .label {
+	background: var(--ink); color: var(--bg); margin: 0; padding: 0.35rem 1rem;
+	font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; letter-spacing: 0.04em;
+}
+body .fact .value { padding: 0.75rem 1rem 1rem; font-weight: 600; color: var(--fg-strong); }
+body .person-name { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; }
+body .step-num { background: var(--orange); color: #0d0d0d; border-radius: 0; font-family: var(--font-display); font-weight: 800; }
+
+body footer { background: var(--plate); color: #a3a3a3; border-top: 5px solid var(--orange); }
+body footer a { color: var(--orange); }

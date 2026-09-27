@@ -1,0 +1,293 @@
+/* ==========================================================================
+   OPTION A — "Drawing Sheet"
+   Sibling of aidanstew.art: the docs read like a released engineering
+   drawing. Paper ground, ink lines, square corners, osifont (ISO 3098 CAD
+   lettering) for headings and labels, B612 for body text. The lab's orange
+   is the markup color; red is reserved for danger, as on a drawing where red
+   means "stop and read this".
+   ========================================================================== */
+@font-face {
+	font-family: 'osifont';
+	src: url('/fonts/osifont.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--tfl-draw: 'osifont', 'B612 Mono', ui-monospace, monospace;
+	--sl-font: 'B612', system-ui, sans-serif;
+	--sl-font-mono: 'B612 Mono', ui-monospace, monospace;
+	--sl-line-height: 1.7;
+}
+
+/* ---- Dark mode: the print negative (ink ground, paper linework) ---- */
+:root {
+	--tfl-paper: #131517;
+	--tfl-ink: #e6e3da;
+	--tfl-line: #3a3e43;
+	--tfl-markup: #f0883a; /* lab orange, 7.4:1 on the ground */
+	--tfl-danger: #ff6b6b;
+
+	--sl-color-white: #f2efe6;
+	--sl-color-gray-1: #d9d6cd;
+	--sl-color-gray-2: #c4c1b8;
+	--sl-color-gray-3: #9a978f;
+	--sl-color-gray-4: #5d5f61;
+	--sl-color-gray-5: #3a3e43;
+	--sl-color-gray-6: #1c1f22;
+	--sl-color-black: #131517;
+
+	--sl-color-accent-low: #3a2616;
+	--sl-color-accent: #f0883a;
+	--sl-color-accent-high: #f6b27d;
+	--sl-color-text-accent: #f0883a;
+
+	--sl-color-bg: #131517;
+	--sl-color-bg-nav: #131517;
+	--sl-color-bg-sidebar: #131517;
+	--sl-color-bg-inline-code: #22262a;
+	--sl-color-hairline-light: #2a2e32;
+	--sl-color-hairline: #3a3e43;
+	--sl-color-hairline-shade: #e6e3da;
+	--sl-color-text: #d9d6cd;
+	--sl-color-text-invert: #131517;
+
+	--sl-color-red: #ff6b6b;
+	--sl-color-red-high: #ff9a9a;
+	--sl-color-red-low: #2a1719;
+	--sl-color-orange: #f0883a;
+	--sl-color-orange-high: #f6b27d;
+	--sl-color-orange-low: #2b1f15;
+	--sl-color-yellow: #f0883a;
+	--sl-color-yellow-high: #f6b27d;
+	--sl-color-yellow-low: #2b1f15;
+	--sl-color-green: #8cc59a;
+	--sl-color-green-high: #b6dcbf;
+	--sl-color-green-low: #18231c;
+	--sl-color-blue: #82b4e8;
+	--sl-color-blue-high: #b3d1f1;
+	--sl-color-blue-low: #161f29;
+	--sl-color-purple: #c7a5d8;
+	--sl-color-purple-high: #ddc7e8;
+	--sl-color-purple-low: #221b27;
+}
+
+/* ---- Light mode: the white print ---- */
+:root[data-theme='light'] {
+	--tfl-paper: #fafaf7;
+	--tfl-ink: #1a1c1e;
+	--tfl-line: #b9b7ac;
+	--tfl-markup: #b04d0c; /* orange darkened to 5.2:1 on paper */
+	--tfl-danger: #c8242b;
+
+	--sl-color-white: #1a1c1e;
+	--sl-color-gray-1: #26292c;
+	--sl-color-gray-2: #3a3d40;
+	--sl-color-gray-3: #5b5e62;
+	--sl-color-gray-4: #8e9094;
+	--sl-color-gray-5: #b9b7ac;
+	--sl-color-gray-6: #eeede6;
+	--sl-color-gray-7: #f4f3ee;
+	--sl-color-black: #fafaf7;
+
+	--sl-color-accent-low: #f7e3d3;
+	--sl-color-accent: #e87722;
+	--sl-color-accent-high: #8f3e09;
+	--sl-color-text-accent: #b04d0c;
+
+	--sl-color-bg: #fafaf7;
+	--sl-color-bg-nav: #fafaf7;
+	--sl-color-bg-sidebar: #fafaf7;
+	--sl-color-bg-inline-code: #efeee7;
+	--sl-color-hairline-light: #dcdad1;
+	--sl-color-hairline: #b9b7ac;
+	--sl-color-hairline-shade: #1a1c1e;
+	--sl-color-text: #26292c;
+	--sl-color-text-invert: #fafaf7;
+
+	--sl-color-red: #c8242b;
+	--sl-color-red-high: #a51d23;
+	--sl-color-red-low: #fbeaea;
+	--sl-color-orange: #b04d0c;
+	--sl-color-orange-high: #8f3e09;
+	--sl-color-orange-low: #fcefe4;
+	--sl-color-yellow: #b04d0c;
+	--sl-color-yellow-high: #8f3e09;
+	--sl-color-yellow-low: #fcefe4;
+	--sl-color-green: #2f6b3a;
+	--sl-color-green-high: #23512c;
+	--sl-color-green-low: #e8f0e9;
+	--sl-color-blue: #1f5f99;
+	--sl-color-blue-high: #174a78;
+	--sl-color-blue-low: #e7eef6;
+	--sl-color-purple: #6b4a8a;
+	--sl-color-purple-high: #53386c;
+	--sl-color-purple-low: #efe9f4;
+}
+
+/* ---- Lettering: osifont for headings, titles and every label ---- */
+h1, h2, h3, h4, h5, h6, .site-title,
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--tfl-draw);
+	font-weight: 400;
+	letter-spacing: 0.02em;
+}
+:root .site-title {
+	text-transform: uppercase;
+	letter-spacing: 0.22em;
+	font-size: 1rem;
+	color: var(--sl-color-white);
+}
+
+/* Header: flat paper with a single ink line under it. */
+:root header.header {
+	background: var(--sl-color-bg-nav);
+	border-bottom: 1px solid var(--tfl-ink);
+}
+:root .site-nav a {
+	font-family: var(--tfl-draw);
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	font-size: 0.8rem;
+}
+:root .site-nav a[aria-current='page'] {
+	border-bottom-width: 1px;
+}
+
+/* Page title: large drawing title, ruled off like a title-block band. */
+:root .content-panel h1#_top {
+	font-size: clamp(2rem, 4vw, 2.75rem);
+	text-transform: uppercase;
+	line-height: 1.1;
+	padding-bottom: 0.4em;
+	border-bottom: 1px solid var(--tfl-ink);
+}
+
+/* Section headings: SECTION A–A cut labels, as on the portfolio. */
+.sl-markdown-content { counter-reset: tfl-sec; }
+.sl-markdown-content h2:not(:where(.not-content *)) {
+	counter-increment: tfl-sec;
+	text-transform: uppercase;
+	font-size: 1.6rem;
+	padding-bottom: 0.25em;
+	border-bottom: 1px solid var(--sl-color-hairline);
+}
+.sl-markdown-content h2:not(:where(.not-content *))::before {
+	content: 'SECTION ' counter(tfl-sec, upper-alpha) '–' counter(tfl-sec, upper-alpha);
+	display: block;
+	font-size: 0.72rem;
+	letter-spacing: 0.2em;
+	color: var(--tfl-markup);
+	margin-bottom: 0.2rem;
+}
+.sl-markdown-content h3:not(:where(.not-content *)) {
+	font-size: 1.25rem;
+}
+
+/* Square everything: this is a drawing, not an app. */
+:root site-search button,
+:root .pagination-links a,
+:root starlight-theme-select select,
+:root .sl-markdown-content :is(img, pre, table, code),
+:root .expressive-code .frame,
+:root .expressive-code pre {
+	border-radius: 0;
+}
+:root .pagination-links a {
+	border: 1px solid var(--sl-color-hairline);
+	box-shadow: none;
+}
+:root .pagination-links a:hover {
+	border-color: var(--tfl-ink);
+}
+:root .pagination-links .link-title {
+	font-family: var(--tfl-draw);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+/* Sidebar: plain list, current page marked with an ink bar + orange text. */
+:root #starlight__sidebar .top-level > li > details > summary .group-label .large,
+:root #starlight__sidebar .top-level > li > a {
+	font-family: var(--tfl-draw);
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.92rem;
+}
+:root #starlight__sidebar [aria-current='page'],
+:root #starlight__sidebar [aria-current='page']:hover,
+:root #starlight__sidebar [aria-current='page']:focus {
+	background: transparent;
+	color: var(--tfl-markup);
+	font-weight: 700;
+	border-radius: 0;
+	box-shadow: inset 2px 0 0 var(--tfl-markup);
+}
+:root .right-sidebar h2 {
+	font-family: var(--tfl-draw);
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+
+/* ---- Callouts: ruled boxes. Colour = meaning; the box style = weight. ----
+   danger  : red double frame (hard gate — the loudest thing on the page)
+   caution : orange frame on an orange-tinted ground (emergency procedure)
+   WARNING : orange rail on paper (ordinary hazard)
+   NOTE    : blue rail on paper */
+:root .starlight-aside {
+	border: 1px solid var(--sl-color-asides-border);
+	border-inline-start-width: 4px;
+	border-radius: 0;
+	color: var(--sl-color-text);
+}
+:root .starlight-aside__title {
+	font-family: var(--tfl-draw);
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 1.05rem;
+}
+:root .starlight-aside--danger {
+	border: 3px double var(--sl-color-red);
+	background: var(--sl-color-red-low);
+}
+:root .starlight-aside--caution {
+	border: 2px solid var(--sl-color-orange);
+	background: var(--sl-color-orange-low);
+}
+.markdown-alert {
+	border-radius: 0;
+	background: transparent;
+	border: 1px solid var(--sl-color-hairline);
+	border-inline-start: 4px solid var(--gb-alert-color);
+}
+.markdown-alert .markdown-alert-title {
+	font-family: var(--tfl-draw);
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+/* Download button: square, ink-outlined, fills orange on hover. */
+.sl-markdown-content a.tfl-download-button {
+	display: inline-block;
+	padding: 0.55rem 1.1rem;
+	margin: 0.25rem 0.5rem 0.25rem 0;
+	border: 1px solid var(--tfl-ink);
+	border-radius: 0;
+	color: var(--tfl-ink);
+	font-family: var(--tfl-draw);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	text-decoration: none;
+}
+.sl-markdown-content a.tfl-download-button:hover {
+	background: var(--sl-color-accent);
+	border-color: var(--sl-color-accent);
+	color: #1a1c1e;
+}
