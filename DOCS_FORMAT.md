@@ -1,6 +1,6 @@
 # Fab Lab Documentation Format Standard
 
-Instructions for restructuring the TAMU Fab Lab machine documentation. The site is built with **Astro Starlight**, hosted on **Cloudflare Pages**, and edited by non-technical student staff through the GitHub web editor (every change goes through a PR into `main`; the site rebuilds on merge). Apply this standard to every machine page. A complete reference example (the Glowforge Pro page) is at the bottom — match its structure, tone, and formatting exactly.
+Instructions for restructuring the TAMU Fab Lab machine documentation. The site is built with **Astro Starlight**, hosted on **Cloudflare Pages**, and edited by non-technical student staff through the GitHub web editor (every change goes through a PR into `main`; the site rebuilds on merge). Apply this standard to every machine page. A complete reference example (the Glowforge Pro page) is at the bottom — match its structure, tone, and formatting exactly. In particular, note how little sits above `## Before you start`: one gate callout, with every other warning placed at the step it belongs to.
 
 ## Background
 
@@ -57,9 +57,9 @@ Every machine page starts from these sections, in this order:
 
 1. **Frontmatter title** — as above. No body H1.
 2. **Untitled intro paragraph** — first thing in the body, no heading. Plain prose: what the machine does, what it's good at, typical jobs, key capacity numbers (bed size, max thickness, etc.). Ends with a link to the shared [Which machine should I use?](/docs/which-machine/) page. Do **not** use "What this machine is for" / "not for" headings — that content lives in the intro paragraph and the which-machine page respectively.
-3. **Critical hazards callouts** — a stack of individual callouts immediately after the intro, **one hazard per callout**, no preamble line, covering ONLY what can't wait for a specific step. This block is for **hazards and emergency procedures, not prerequisites** — what can hurt you and what to do when something goes wrong, never a restatement of what you need before starting. Order and type: a hard safety gate first, as a standout `:::danger[…]` callout (e.g. the laser certification); prohibited materials and off-limits features as `> [!WARNING]` callouts; emergency procedures (how to stop the machine, fire response) as titled `:::caution[…]` callouts (see Callout rules). Everything step-specific goes inline in Operating instead. **Each item lives in exactly one place** — a requirement stated as a top callout (laser certification) is not also bulleted in Before you start, and vice versa. A material *prohibition* can be a top hazard while its *approved-materials list* lives in Before you start — that's the hazard vs. the reference, not a duplicate.
-4. **`## Before you start`** — the single home for **prerequisites**: training/access requirements, PPE, the machine's **approved materials listed inline** (each machine's page owns its own list — there is no shared materials page), file format requirements, how to get files onto the machine, material size limits. Anything that belongs to a top hazard callout (a safety gate, an emergency procedure) is not repeated here.
-5. **`## Operating`** — the numbered procedure. Safety callouts placed inline, directly above or below the step where the hazard occurs.
+3. **Gate callout** — at most one or two callouts immediately after the intro, and often just one: the hard safety gate the student must clear before reading further, as a standout `:::danger[…]` callout (e.g. the laser certification). No preamble line, one hazard per callout. **Do not stack warnings here.** A block of five callouts at the top of a page reads as boilerplate and gets skipped; a single red gate gets read. Everything else — prohibited materials, off-limits features, how to stop the machine, fire response, "stay at the machine" — goes inline, at the step or bullet where the student actually meets that hazard (prohibited materials next to the approved list in Before you start; emergency stop next to the start-the-job step; fire response next to the watch-the-job step). **Each item lives in exactly one place** — a requirement stated as the gate callout (laser certification) is not also bulleted in Before you start, and vice versa. A material *prohibition* can be a callout while its *approved-materials list* is the bullet above it — that's the hazard vs. the reference, not a duplicate.
+4. **`## Before you start`** — the single home for **prerequisites**: training/access requirements, PPE, the machine's **approved materials listed inline** (each machine's page owns its own list — there is no shared materials page), file format requirements, how to get files onto the machine, material size limits. Anything stated in the gate callout is not repeated here. Hazard callouts (prohibited materials, off-limits features) sit between the bullets they relate to — a callout at column 0 splits the bullet list, which renders fine.
+5. **`## Operating`** — the numbered procedure, with the safety content woven in. Callouts go directly above or below the step where the hazard occurs, and the emergency procedures (`:::caution[EMERGENCY STOP]`, `:::caution[FIRE PROCEDURE]`) live here too: emergency stop right after the step that starts the job, fire response right after the step that has the student watch it. Watching the job is itself a numbered step, not just a warning — it's something the student does.
 6. **`## Finishing up`** — cleanup and shutdown. Always includes removing all material/scrap and "take your project with you — the lab has no storage" (this enforces lab policy at the moment it matters).
 7. **`## Common problems`** — optional troubleshooting. Each entry: bold problem statement as the lead sentence, then a short prose paragraph with the fix. No numbered lists here.
 
@@ -78,7 +78,7 @@ Regardless of structure, do **not** include:
 - Standard syntax is `> [!WARNING]` and `> [!NOTE]` (GitHub blockquote-alert style). The site supports these already — nothing to install or configure per page. `[!TIP]`, `[!IMPORTANT]`, and `[!CAUTION]` also render, but machine pages should rarely need more than WARNING and NOTE.
 - One hazard per callout — don't bundle several warnings into one block.
 - Callouts are **reserved for safety warnings and genuinely important notes**. Never use them for decoration, tips, or general emphasis.
-- Place each warning at the point of hazard — a warning about fires during cutting belongs next to the cutting step, not in a separate section.
+- Place each warning at the point of hazard — a warning about fires during cutting belongs next to the cutting step, not in a separate section and not in a block at the top of the page.
 - **Custom-titled callouts** use Starlight's aside syntax (`:::type[Custom Title]` … `:::`), which renders in a visually distinct filled style. Three sanctioned uses — reserve each type for its meaning so the colors stay unambiguous:
   - **Emergency procedures** — `:::caution[EMERGENCY STOP]`, `:::caution[FIRE PROCEDURE]` (orange filled). Any callout that tells the user what to do when something goes wrong gets this treatment, visually distinct from ordinary warnings.
   - **Certification / hard access requirements** — `:::danger[LASER CERTIFICATION REQUIRED]` (red, unmistakable).
@@ -133,73 +133,80 @@ title: Laser Cutter (Glowforge Pro)
 ---
 ```
 
-The Glowforge Pro cuts and engraves flat sheet materials — plywood, MDF, acrylic, cardboard, leather, and more — by tracing your design with a 45W CO₂ laser. It's the fastest way in the lab to go from a 2D drawing to a physical part, and it excels at precise cuts, interlocking parts, enclosures, signage, and surface engraving. Most jobs finish in minutes. It accepts sheets up to about 20.4" × 12", cuts within a roughly 19.5" × 11" area, and cuts reliably through stock up to about 1/4" thick. If you're not sure this is the right machine for your project, see [Which machine should I use?](/docs/which-machine/).
+The Glowforge Pro cuts and engraves flat sheet materials — wood, acrylic, cardboard, and more — by tracing your design with a 45W CO₂ laser. It's the fastest way in the lab to go from a 2D drawing to a physical part, and it excels at precise cuts, interlocking parts, enclosures, signage, and surface engraving (including engraving on approved metals). Most jobs finish in minutes. It accepts sheets up to about 20.4" × 12", cuts within a roughly 19.5" × 11" area, and cuts reliably through stock up to about 1/4" thick. If you're not sure this is the right machine for your project, see [Which Machine?](/docs/which-machine/) or ask a staff member.
 
 :::danger[LASER CERTIFICATION REQUIRED]
-This machine is a **Class 4 laser**. You must hold **TAMU laser safety certification** to operate it — be ready to show it to staff. No certification, no laser.
+The Glowforge is a **Class 4 laser**. You must hold **TAMU laser safety certification** to operate it — see [Laser Safety Certification](/safety/#laser-safety-certification) for how to get certified, and be ready to show it to staff. No certification, no laser.
 :::
-
-> [!WARNING]
-> **Never cut PVC, vinyl, or any material containing chlorine.** It releases gas that is toxic to you and corrodes the machine. Polycarbonate (Lexan), ABS, HDPE, and fiberglass are also prohibited — they melt, catch fire, or produce hazardous fumes. Cut only staff-approved materials.
-
-> [!WARNING]
-> **Never leave the machine unattended during a job** unless a staff member has explicitly OK'd it for a long job.
-
-:::caution[EMERGENCY STOP]
-**Do not open the lid while a job is running.** To stop the machine, press the **glowing button** on top — it pauses the job. To kill all power, flip the **ON/OFF switch at the rear** of the machine.
-:::
-
-:::caution[FIRE PROCEDURE]
-Small, brief flames at the cut point are normal. If a flame persists, keep the lid closed (it starves the fire), pause the job, and get a staff member immediately. **Only if no staff member can reach the machine in time:** open the lid and throw the **fire blanket** (located **[location]**) over the workpiece.
-:::
-
-> [!WARNING]
-> **The passthrough slot on the front and back is off-limits** unless a staff member has specifically trained you on it. Using the slot exposes the laser (Class 4 operation) and requires extra safety precautions.
 
 ## Before you start
 
-- Only cut **staff-approved materials**: wood, acrylic, cardboard, rubber (lab-provided), and metal (**engraving only**). If your material isn't listed or you don't know what it is, ask a staff member — don't guess. *(Laser certification is the red callout above — not repeated here.)*
-- Prepare your design as an **SVG or PDF** for cutting. Plain images (JPG/PNG) can be engraved but not cut.
-- The Glowforge is controlled entirely from a web browser — there's no local software and no USB port. Have your file accessible from the lab computer via [cloud location / email / drive].
-- Material must fit within about 20.4" × 12" and be no thicker than 1/2" with the crumb tray in place.
+- **First-time users must have a staff member present.**
+- Only cut **staff-approved materials**: wood, acrylic, cardboard, rubber (lab-provided), and metal (**engraving only**). Material can be brought in or taken from lab stock. Anything else — including materials you can't identify — needs staff approval first.
+
+> [!WARNING]
+> **Never cut PVC, vinyl, or any material containing chlorine.** It releases gas that is toxic to you and corrodes the machine. Polycarbonate (Lexan), ABS, HDPE, and fiberglass are also prohibited — they melt, catch fire, or produce hazardous fumes. If you aren't certain what your material is, don't cut it.
+
+- Prepare your design as an **SVG or PDF** for cutting. Plain images (**JPG/PNG**) can be engraved but not cut. **DXF is not supported.**
+- The Glowforge is controlled entirely from a web browser on the **lab computer** — open the starred tab called **"LASER CUT HERE"** and have your file accessible from there.
+- Material must fit within about 20.4" × 12" and be no thicker than 1/2" with the crumb tray in place. Longer stock does not go through the **passthrough slot** on the front and back — the slot is **off-limits** unless a staff member has specifically trained you on it, because it lets the beam out of the enclosure and needs extra precautions.
+- No special PPE is required beyond standard lab attire. Keep hands, hair, clothing, and loose items clear of moving parts.
 
 ## Operating
 
-1. Turn on the power switch on the **back-left** of the machine and wait for it to calibrate — the head will move around and the app will say "Homing," then "Ready." The exhaust fans run automatically during a print, so there's nothing separate to switch on. [Adjust if the lab uses an external booster fan.]
-2. Open the lid and place your material flat on the honeycomb crumb tray. Warped material is a fire and focus hazard — use hold-down pins to flatten it, and never stack material.
-3. On the lab computer, go to **app.glowforge.com**, sign in to the lab account, and upload your file (or open it from the design library).
-4. Your material appears live in the lid camera view. **Drag and position your design** directly on the camera image. The preview is close but not pixel-perfect — leave a small margin from the material edges.
-5. Set your material:
+1. Check that no job is already running — the machine is visibly/audibly working and the top button is lit during a job. **Don't open the lid to check.**
+2. The machine is normally left on. If it's off, flip the **ON/OFF switch at the rear**, and wait for calibration — the head moves around and the app says "Homing," then "Ready."
+3. Visually confirm the **exhaust hose** is connected — don't tug on it.
+4. Open the lid, clear out any leftover scrap, and place your material flat on the honeycomb crumb tray. Warped material is a fire and focus hazard — use the **hold-down pegs** to flatten it (especially wood), and never stack material. Close the lid.
+5. Turn on the **ventilation system** — don't change its settings. **Never run a job without it**: the fumes from cutting belong outside, not in the room with you.
+6. In the **"LASER CUT HERE"** tab on the lab computer, upload your file. Your material appears live in the lid camera view — **drag and position your design** directly on the camera image. The preview is close but not pixel-perfect: leave a small margin from material edges and from previous cuts on used stock.
+7. Set your material and settings:
    - **Proofgrade material** (has a QR code): the machine detects it and loads settings automatically.
-   - **Everything else**: choose "Unknown material," enter the thickness, and use the settings from the **material settings chart** posted next to the machine. Start with the chart's values — don't improvise settings on unfamiliar material.
-6. Click **Set Focus** in the app and place the focus target on the area you'll be cutting. Wait for the camera view to refresh, then double-check your design's position.
-7. Click **Print** in the app, then press the **glowing button on top of the machine** when it pulses.
+   - **Everything else**: choose the material or "Unknown material" and use tested settings — the **sample cards** around the machine show results for common materials. Run a small test before the main job on unfamiliar material; don't improvise settings.
+   - Multiple operations (e.g. engrave + cut) run in the order listed, top to bottom — **do cuts first** to minimize warping.
+
+8. Send the job from the web interface, then flip the **"In Use" sign**.
+9. When the **button on top glows**, press it to start. Pressing it again pauses the job.
+
+:::caution[EMERGENCY STOP]
+To stop the machine, press the **glowing button** on top — it pauses the job. To kill all power, flip the **ON/OFF switch at the rear** of the machine. **Do not open the lid while a job is running.**
+:::
+
+10. Stay at the machine and watch the job from start to finish — don't leave it unattended unless a staff member has explicitly OK'd it for a long job. Normal operation looks like smooth motion, smoke drawn toward the exhaust, and small flames at the cut point that go out as soon as the head moves on.
 
 > [!WARNING]
-> Stay at the machine for the entire job. A small, candle-like flame at the cut point that moves with the laser head is normal. A flame that lingers, spreads, or persists after the head moves on is not — **pause the job with the button and follow the fire procedure at the top of this page**.
+> **Pause the job and notify staff** if you see lingering or spreading flames, excessive smoke or smoke escaping the front of the machine, grinding or knocking noises, a burning smell that doesn't match the material, or weak ventilation.
 
-8. When the job finishes, **wait for the fans to quiet down** (10–15 seconds) so smoke clears before opening the lid.
-9. Remove your parts and any scrap. If pieces fell through the crumb tray, lift it out and collect them.
+:::caution[FIRE PROCEDURE]
+If a flame persists after the head moves on, keep the lid closed (it starves the fire), pause the job, and get a staff member immediately. **Only if no staff member can reach the machine in time:** open the lid and throw the **fire blanket** (located **[location]**) over the workpiece.
+:::
+
+11. When the job finishes, wait for all motion to stop (the button stops glowing and the app shows done), then give the smoke a few seconds to clear before opening the lid.
+12. Check your material for smoldering, then remove your parts and any scrap. If pieces fell through the crumb tray, lift it out and collect them.
 
 ## Finishing up
 
-- Remove all material and scrap from the bed, including cutoffs in the tray underneath.
-- Brush or vacuum debris off the crumb tray, and confirm the tray is seated flat in its dimples for the next user.
-- Sign out of the Glowforge app if you used a personal account.
-- Leave the machine on — it stays on by default.
+- Turn off the **ventilation system**.
+- Remove all material and scrap from the bed, including cutoffs in the tray underneath. Leave the machine on — it stays on by default.
+- Return usable stock to its place (excess personal material may be donated to the lab if you like).
+- Wipe the inside of the lid and the camera with the **provided cloth**.
+- Confirm the crumb tray is seated flat for the next user, and flip the **"In Use" sign** back.
+- Report any abnormal machine behavior to staff before you leave.
 - Take your project and materials with you — the lab has no storage.
 
 ## Common problems
 
-**The laser isn't cutting all the way through.** Run Set Focus on the exact area being cut, confirm your thickness entry and settings match the chart for your material, and check that the material is flat and the crumb tray is seated properly. If those all check out, the lens or windows may need cleaning — ask a staff member; optics are cleaned with Zeiss wipes only.
+**The laser isn't cutting all the way through.** Don't re-run the job — a second pass on shifted material makes it worse. Check that your settings match the sample cards for your material and that the material is flat with the crumb tray seated properly, then notify staff. If settings and material check out, the optics may need cleaning — that's a staff task, so ask.
 
-**The cut is offset from where I placed it.** The camera preview has slight distortion, especially near the bed edges. Run Set Focus before positioning (focus height affects the preview), keep designs away from the extreme edges, and cut a small test shape first for alignment-critical work.
+**The cut is offset from where I placed it.** The camera preview has slight distortion, especially near the bed edges. Keep designs away from the extreme edges, leave margin around previous cuts on used stock, and cut a small test shape first for alignment-critical work.
 
-**Cut edges are heavily charred.** Power is too high or speed too low for the material. Masking the surface with paper transfer tape before cutting also reduces scorch marks on wood.
+**Cut edges are heavily charred.** Power is too high or speed too low for the material — recheck against the sample cards and notify staff if it persists. Masking the surface with paper transfer tape before cutting also reduces scorch marks on wood.
 
 **The button is glowing yellow / the app says the machine is too hot or cold.** The Glowforge pauses when it's outside its operating temperature range. Give it a few minutes to cool down or warm up — don't restart the job repeatedly.
 
-**The app says "Offline."** The Glowforge needs internet and Wi-Fi to do anything. Check the lab network, then power-cycle the machine. If it won't reconnect, tell a staff member.
+**The app says "Offline."** The Glowforge needs internet to do anything. Tell a staff member — don't fiddle with the lab network.
+
+**Ventilation seems weak.** Stop and notify staff — don't run jobs with poor extraction.
 
 ---
 

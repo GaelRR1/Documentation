@@ -10,37 +10,17 @@ The Glowforge Pro cuts and engraves flat sheet materials — wood, acrylic, card
 The Glowforge is a **Class 4 laser**. You must hold **TAMU laser safety certification** to operate it — see [Laser Safety Certification](/safety/#laser-safety-certification) for how to get certified, and be ready to show it to staff. No certification, no laser.
 :::
 
-> [!WARNING]
-> **Never cut PVC, vinyl, or any material containing chlorine.** It releases gas that is toxic to you and corrodes the machine. Polycarbonate (Lexan), ABS, HDPE, and fiberglass are also prohibited — they melt, catch fire, or produce hazardous fumes. Cut only staff-approved materials.
-
-> [!WARNING]
-> **Never leave the machine unattended during a job** unless a staff member has explicitly OK'd it for a long job.
-
-:::caution[EMERGENCY STOP]
-**Do not open the lid while a job is running.** To stop the machine, press the **glowing button** on top — it pauses the job. To kill all power, flip the **ON/OFF switch at the rear** of the machine.
-:::
-
-:::caution[FIRE PROCEDURE]
-Small, brief flames at the cut point are normal. If a flame persists, keep the lid closed (it starves the fire), pause the job, and get a staff member immediately. **Only if no staff member can reach the machine in time:** open the lid and throw the **fire blanket** (located **[location]**) over the workpiece.
-:::
-
-> [!WARNING]
-> **Never run a job without the ventilation system on.**
-
-> [!WARNING]
-> **The passthrough slot on the front and back is off-limits** unless a staff member has specifically trained you on it. Using the slot exposes the laser (Class 4 operation) and requires extra safety precautions.
-
-:::note[Staff note — Glowforge lead]
-The stop/fire procedure above follows the lab's safety manual (pause with the button, keep the lid closed, fire blanket as last resort). Glowforge's own documentation instead says opening the lid cancels a job instantly. Confirm which is lab policy and update these callouts to match — then mirror the decision in the `DOCS_FORMAT.md` reference example.
-:::
-
 ## Before you start
 
 - **First-time users must have a staff member present.**
 - Only cut **staff-approved materials**: wood, acrylic, cardboard, rubber (lab-provided), and metal (**engraving only**). Material can be brought in or taken from lab stock. Anything else — including materials you can't identify — needs staff approval first.
+
+> [!WARNING]
+> **Never cut PVC, vinyl, or any material containing chlorine.** It releases gas that is toxic to you and corrodes the machine. Polycarbonate (Lexan), ABS, HDPE, and fiberglass are also prohibited — they melt, catch fire, or produce hazardous fumes. If you aren't certain what your material is, don't cut it.
+
 - Prepare your design as an **SVG or PDF** for cutting. Plain images (**JPG/PNG**) can be engraved but not cut. **DXF is not supported.**
 - The Glowforge is controlled entirely from a web browser on the **lab computer** — open the starred tab called **"LASER CUT HERE"** and have your file accessible from there.
-- Material must fit within about 20.4" × 12" and be no thicker than 1/2" with the crumb tray in place.
+- Material must fit within about 20.4" × 12" and be no thicker than 1/2" with the crumb tray in place. Longer stock does not go through the **passthrough slot** on the front and back — the slot is **off-limits** unless a staff member has specifically trained you on it, because it lets the beam out of the enclosure and needs extra precautions.
 - No special PPE is required beyond standard lab attire. Keep hands, hair, clothing, and loose items clear of moving parts.
 
 ## Operating
@@ -49,7 +29,7 @@ The stop/fire procedure above follows the lab's safety manual (pause with the bu
 2. The machine is normally left on. If it's off, flip the **ON/OFF switch at the rear**, and wait for calibration — the head moves around and the app says "Homing," then "Ready."
 3. Visually confirm the **exhaust hose** is connected — don't tug on it.
 4. Open the lid, clear out any leftover scrap, and place your material flat on the honeycomb crumb tray. Warped material is a fire and focus hazard — use the **hold-down pegs** to flatten it (especially wood), and never stack material. Close the lid.
-5. Turn on the **ventilation system** — don't change its settings.
+5. Turn on the **ventilation system** — don't change its settings. **Never run a job without it**: the fumes from cutting belong outside, not in the room with you.
 6. In the **"LASER CUT HERE"** tab on the lab computer, upload your file. Your material appears live in the lid camera view — **drag and position your design** directly on the camera image. The preview is close but not pixel-perfect: leave a small margin from material edges and from previous cuts on used stock.
 7. Set your material and settings:
    - **Proofgrade material** (has a QR code): the machine detects it and loads settings automatically.
@@ -61,13 +41,27 @@ The stop/fire procedure above follows the lab's safety manual (pause with the bu
 :::
 
 8. Send the job from the web interface, then flip the **"In Use" sign**.
-9. When the **button on top glows**, press it to start. (Pressing it again pauses the job.)
+9. When the **button on top glows**, press it to start. Pressing it again pauses the job.
+
+:::caution[EMERGENCY STOP]
+To stop the machine, press the **glowing button** on top — it pauses the job. To kill all power, flip the **ON/OFF switch at the rear** of the machine. **Do not open the lid while a job is running.**
+:::
+
+10. Stay at the machine and watch the job from start to finish — don't leave it unattended unless a staff member has explicitly OK'd it for a long job. Normal operation looks like smooth motion, smoke drawn toward the exhaust, and small flames at the cut point that go out as soon as the head moves on.
 
 > [!WARNING]
-> Stay at the machine for the entire job. Normal operation: smooth motion, smoke drawn toward the exhaust, small flames that extinguish quickly. **Pause the job and notify staff** if you see lingering or spreading flames, excessive smoke or smoke escaping the front of the machine, grinding or knocking noises, a burning smell that doesn't match the material, or weak ventilation. For fire, follow the procedure at the top of this page.
+> **Pause the job and notify staff** if you see lingering or spreading flames, excessive smoke or smoke escaping the front of the machine, grinding or knocking noises, a burning smell that doesn't match the material, or weak ventilation.
 
-10. When the job finishes, wait for all motion to stop (the button stops glowing and the app shows done), then give the smoke a few seconds to clear before opening the lid.
-11. Check your material for smoldering, then remove your parts and any scrap. If pieces fell through the crumb tray, lift it out and collect them.
+:::caution[FIRE PROCEDURE]
+If a flame persists after the head moves on, keep the lid closed (it starves the fire), pause the job, and get a staff member immediately. **Only if no staff member can reach the machine in time:** open the lid and throw the **fire blanket** (located **[location]**) over the workpiece.
+:::
+
+:::note[Staff note — Glowforge lead]
+The stop and fire procedures above follow the lab's safety manual (pause with the button, keep the lid closed, fire blanket as last resort). Glowforge's own documentation instead says opening the lid cancels a job instantly. Confirm which is lab policy and update these callouts to match — then mirror the decision in the `DOCS_FORMAT.md` reference example.
+:::
+
+11. When the job finishes, wait for all motion to stop (the button stops glowing and the app shows done), then give the smoke a few seconds to clear before opening the lid.
+12. Check your material for smoldering, then remove your parts and any scrap. If pieces fell through the crumb tray, lift it out and collect them.
 
 ## Finishing up
 
