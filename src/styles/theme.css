@@ -1,7 +1,8 @@
 /* ==========================================================================
    "Signs on Paper" theme for Starlight — the Fab Lab docs styled after the
    ANSI Z535 / ISO 3864 safety signs students already read on the shop
-   floor, set on warm paper and ink.
+   floor, set on cool steel greys: blue-grey in dark mode, cool white in
+   light mode.
 
    - A black header plate with a safety-orange band, in both modes.
    - Callouts are signs: a signal-word band over a plain panel. The band
@@ -16,7 +17,7 @@
    - Square corners, no gradients, no glow.
 
    Sign colours (safety orange #f9882c, red #c8102e, blue #0057b8, green
-   #00804a, plate #0d0d0d) are fixed in both modes, like physical signs.
+   #00804a, plate #12161b) are fixed in both modes, like physical signs.
    Everything else is tokenised per mode; text pairs were checked for
    WCAG contrast (links >= 4.5:1 on the page ground in both modes). The
    standalone pages (landing, Contact, Ask) read the same palette from
@@ -30,7 +31,7 @@
 	--tfl-signal-red: #c8102e;
 	--tfl-signal-blue: #0057b8;
 	--tfl-signal-green: #00804a;
-	--tfl-plate: #0d0d0d;
+	--tfl-plate: #12161b; /* blue-black steel */
 	--sl-text-base: 1.0625rem;
 }
 
@@ -38,97 +39,97 @@
 :root {
 	--tfl-ink: #f2f2f2;
 	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #e6e6e6;
-	--sl-color-gray-2: #cfcfcf;
-	--sl-color-gray-3: #a3a3a3;
-	--sl-color-gray-4: #6b6b6b;
-	--sl-color-gray-5: #3d3d3d;
-	--sl-color-gray-6: #1f1f1f;
-	--sl-color-black: #151515;
+	--sl-color-gray-1: #e4e8ec;
+	--sl-color-gray-2: #c9d0d7;
+	--sl-color-gray-3: #a7b0bb;
+	--sl-color-gray-4: #6b7480;
+	--sl-color-gray-5: #434b56;
+	--sl-color-gray-6: #2a3038;
+	--sl-color-black: #22272e;
 
 	--sl-color-accent-low: #3a2412;
 	--sl-color-accent: #f9882c;
 	--sl-color-accent-high: #fbb57a;
 	--sl-color-text-accent: #f9882c;
 
-	--sl-color-bg: #151515;
-	--sl-color-bg-nav: #0d0d0d;
-	--sl-color-bg-sidebar: #151515;
-	--sl-color-bg-inline-code: #2a2a2a;
-	--sl-color-hairline-light: #2a2a2a;
-	--sl-color-hairline: #3d3d3d;
+	--sl-color-bg: #22272e;
+	--sl-color-bg-nav: #1c2026;
+	--sl-color-bg-sidebar: #1c2026;
+	--sl-color-bg-inline-code: #323942;
+	--sl-color-hairline-light: #323942;
+	--sl-color-hairline: #434b56;
 	--sl-color-hairline-shade: #f9882c;
-	--sl-color-text: #e6e6e6;
+	--sl-color-text: #e4e8ec;
 	--sl-color-text-invert: #0d0d0d;
 
 	--sl-color-red: #ff5c6c;
 	--sl-color-red-high: #ff8f9a;
-	--sl-color-red-low: #1f1f1f;
+	--sl-color-red-low: #2a3038;
 	--sl-color-orange: #f9882c;
 	--sl-color-orange-high: #fbb57a;
-	--sl-color-orange-low: #2b1d10;
+	--sl-color-orange-low: #3a2b20;
 	--sl-color-yellow: #f9882c;
 	--sl-color-yellow-high: #fbb57a;
-	--sl-color-yellow-low: #1f1f1f;
+	--sl-color-yellow-low: #2a3038;
 	--sl-color-green: #4cc38a;
 	--sl-color-green-high: #8fdcb6;
-	--sl-color-green-low: #1f1f1f;
+	--sl-color-green-low: #2a3038;
 	--sl-color-blue: #5ea2f0;
 	--sl-color-blue-high: #9cc6f6;
-	--sl-color-blue-low: #1f1f1f;
+	--sl-color-blue-low: #2a3038;
 	--sl-color-purple: #b69cf0;
 	--sl-color-purple-high: #d3c4f6;
-	--sl-color-purple-low: #1f1f1f;
+	--sl-color-purple-low: #2a3038;
 }
 
 /* ---- Light mode ---- */
 :root[data-theme='light'] {
-	--tfl-ink: #1a1c1e;
-	--sl-color-white: #1a1c1e;
-	--sl-color-gray-1: #26292c;
-	--sl-color-gray-2: #2e2e2e;
-	--sl-color-gray-3: #555555;
-	--sl-color-gray-4: #8a8a8a;
-	--sl-color-gray-5: #cfcdc4;
-	--sl-color-gray-6: #eeede6;
-	--sl-color-gray-7: #f4f3ee;
-	--sl-color-black: #fafaf7;
+	--tfl-ink: #16191d;
+	--sl-color-white: #16191d;
+	--sl-color-gray-1: #24282d;
+	--sl-color-gray-2: #2f343a;
+	--sl-color-gray-3: #545b63;
+	--sl-color-gray-4: #8a929b;
+	--sl-color-gray-5: #cdd2d7;
+	--sl-color-gray-6: #e6e9ec;
+	--sl-color-gray-7: #eceef0;
+	--sl-color-black: #f5f6f7;
 
 	--sl-color-accent-low: #fde7d3;
 	--sl-color-accent: #f9882c;
 	--sl-color-accent-high: #8a3f00;
-	--sl-color-text-accent: #a84a00; /* 5.4:1 on paper */
+	--sl-color-text-accent: #a84a00; /* 5.3:1 on the page, 5.0:1 on the sidebar */
 
-	--sl-color-bg: #fafaf7;
+	--sl-color-bg: #f5f6f7;
 	/* Light on purpose: Starlight reuses bg-nav for the phone "On this page"
 	   bar and the theme dropdown. The header paints its own black plate below. */
-	--sl-color-bg-nav: #f2f1ea;
-	--sl-color-bg-sidebar: #f2f1ea;
-	--sl-color-bg-inline-code: #efeee7;
-	--sl-color-hairline-light: #dcdad1;
-	--sl-color-hairline: #cfcdc4;
+	--sl-color-bg-nav: #eceef0;
+	--sl-color-bg-sidebar: #eceef0;
+	--sl-color-bg-inline-code: #e6e9ec;
+	--sl-color-hairline-light: #dde1e5;
+	--sl-color-hairline: #cdd2d7;
 	--sl-color-hairline-shade: #f9882c;
-	--sl-color-text: #26292c;
-	--sl-color-text-invert: #fafaf7;
+	--sl-color-text: #24282d;
+	--sl-color-text-invert: #f5f6f7;
 
 	--sl-color-red: #c8102e;
 	--sl-color-red-high: #a00d25;
-	--sl-color-red-low: #fafaf7;
+	--sl-color-red-low: #f5f6f7;
 	--sl-color-orange: #a84a00;
 	--sl-color-orange-high: #8a3f00;
 	--sl-color-orange-low: #fcefe4;
 	--sl-color-yellow: #a84a00;
 	--sl-color-yellow-high: #8a3f00;
-	--sl-color-yellow-low: #fafaf7;
+	--sl-color-yellow-low: #f5f6f7;
 	--sl-color-green: #00804a;
 	--sl-color-green-high: #006239;
-	--sl-color-green-low: #fafaf7;
+	--sl-color-green-low: #f5f6f7;
 	--sl-color-blue: #0057b8;
 	--sl-color-blue-high: #004592;
-	--sl-color-blue-low: #fafaf7;
+	--sl-color-blue-low: #f5f6f7;
 	--sl-color-purple: #5b3cc4;
 	--sl-color-purple-high: #472f9a;
-	--sl-color-purple-low: #fafaf7;
+	--sl-color-purple-low: #f5f6f7;
 }
 
 /* ---- Header: a black sign plate in both modes, orange band underneath ---- */
@@ -145,7 +146,7 @@
 	--sl-color-gray-3: #a3a3a3;
 	--sl-color-gray-5: #3d3d3d;
 	--sl-color-gray-6: #1f1f1f;
-	--sl-color-black: #0d0d0d;
+	--sl-color-black: #12161b;
 	--sl-color-text: #e6e6e6;
 	--sl-color-text-accent: #f9882c;
 	--sl-color-hairline-light: #3d3d3d;

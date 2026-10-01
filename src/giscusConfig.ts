@@ -44,7 +44,7 @@ export const GISCUS_CATEGORY_ID = 'DIC_kwDOSeyiyM4DGHfq';
 
 /**
  * giscus themes for the site's dark and light modes. `transparent_dark` lets
- * the page's own #151515 ground show through instead of GitHub's near-black;
+ * the page's own #22272e ground show through instead of GitHub's near-black;
  * a CSS URL can go here instead if the widget ever needs the  full site palette
  * (see ADVANCED-USAGE.md in the giscus repo).
  */

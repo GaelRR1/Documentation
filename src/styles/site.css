@@ -12,7 +12,7 @@
 	--font-body: 'Barlow', system-ui, sans-serif;
 	--font-display: 'Barlow Condensed', 'Barlow', sans-serif;
 	--orange: #f9882c;
-	--plate: #0d0d0d;
+	--plate: #12161b;
 	--discord-blurple: #5865f2;
 	--discord-blurple-hover: #4752c4;
 	/* Primary buttons and the site banner: a safety-orange sign, black text. */
@@ -20,14 +20,14 @@
 	--cta-fg: #0d0d0d;
 }
 :root[data-theme='dark'] {
-	--bg: #151515; --bg-card: #1f1f1f; --fg: #e6e6e6; --fg-strong: #fff; --fg-muted: #a3a3a3;
-	--ink: #f2f2f2; --border: #3d3d3d; --accent: #f9882c; --accent-2: #fbb57a;
-	--bg-soft: #1f1f1f;
+	--bg: #22272e; --bg-card: #2a3038; --fg: #e4e8ec; --fg-strong: #fff; --fg-muted: #a7b0bb;
+	--ink: #f2f2f2; --border: #434b56; --accent: #f9882c; --accent-2: #fbb57a;
+	--bg-soft: #1c2026;
 }
 :root[data-theme='light'] {
-	--bg: #fafaf7; --bg-card: #f2f1ea; --fg: #26292c; --fg-strong: #1a1c1e; --fg-muted: #5b5e62;
-	--ink: #1a1c1e; --border: #cfcdc4; --accent: #a84a00; --accent-2: #8a3f00;
-	--bg-soft: #f2f1ea;
+	--bg: #f5f6f7; --bg-card: #eceef0; --fg: #24282d; --fg-strong: #16191d; --fg-muted: #545b63;
+	--ink: #16191d; --border: #cdd2d7; --accent: #a84a00; --accent-2: #8a3f00;
+	--bg-soft: #eceef0;
 }
 html body { font-size: 1.0625rem; }
 
