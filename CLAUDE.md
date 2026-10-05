@@ -142,7 +142,7 @@ next touch them, with a 301 for each retired URL.
 
 ## Talking to the owner
 
-The owner (Fab Lab VP, solo maintainer) is usually present and prefers a concise
+The owner (Fab Lab VP, solo maintainer; GitHub **@Yocracra**) is usually present and prefers a concise
 **multiple-choice question** over a guess or a staff-note fallback whenever a real
 decision comes up — access policy, ambiguous procedure, unclear machine fact, layout
 choice. Ask; don't assume.
