@@ -21,6 +21,16 @@ Find the Fabrication Lab IT Lead's contact details on the [Contact page](/contac
 
 The IT Lead will provide the network configuration and assigned IP range for your approved project before you connect devices.
 
+## Network Structure
+
+The Fabrication Lab operates three networks:
+
+| Network Name | IP Range | Intended Use |
+|---|---|---|
+| `TamuFabLab_MACHINES` | `10.10.2.1 - 10.10.2.255` | Fabrication equipment and machine management |
+| `TamuFabLab_USER` | `10.10.1.1 - 10.10.1.255` | Student projects and devices |
+| `TamuFabLab_Admin` | `192.168.1.1 - 192.168.1.255` | Staff network testing and administration |
+
 ## Project Approval
 
 Projects are divided into three approval categories:
@@ -62,7 +72,7 @@ Include a brief description of the project, expected network requirements, and t
    Projects may host services accessible within the Fabrication Lab network and may communicate with approved cloud infrastructure over HTTPS. Publicly accessible web servers may not be hosted on the Fabrication Lab network.
 
 5. **Permit staff inspection.**  
-   Fabrication Lab staff may inspect connected equipment and network configurations, and will give project owners at least 24 hours' notice before doing so.
+   Project owners must allow Fabrication Lab staff to inspect connected equipment or network configurations with at least 24 hours' notice.
 
 > [!IMPORTANT]
 > Projects that violate these requirements may be disconnected from the Fabrication Lab network at the discretion of the Fabrication Lab IT Lead, with or without prior notice.
