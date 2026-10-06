@@ -150,7 +150,7 @@ Click **Slice**. You land on the **Preview** tab, where the layer slider on the 
 - **Wipe the build plate base and magnetic plate clean** with shop towels until no resin is left on it and all sides are dry.
 - **Re-attach the magnetic plate** by aligning one of the sides with the edge as shown, and set it back in the stand.
   
- ![The build plate algined by edge](../../assets/images/elegoo_magneticplate_alignment2.jpg)
+  ![The build plate algined by edge](../../assets/images/elegoo_magneticplate_alignment2.jpg)
 
  
 - **Take the drip tray off**, wipe it down, and put it back where you found it.
